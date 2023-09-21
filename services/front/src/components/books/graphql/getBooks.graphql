@@ -1,0 +1,10 @@
+query getBooks {
+  books {
+    id
+    title
+    content
+    published
+    createdAt
+    updatedAt
+  }
+}

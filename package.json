@@ -1,0 +1,10 @@
+{
+    "private": true,
+    "name": "started",
+    "workspaces": {
+      "packages": ["./services/*"]
+    },
+    "npmClient": "bun@1.0.2",
+    "packageManager": "bun@1.0.2"
+  }
+  

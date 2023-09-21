@@ -1,0 +1,62 @@
+{
+  "name": "cbz-reader",
+  "module": "./src/index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "bun --watch ./src/index.ts | pino-pretty",
+    "codegen:graphql": "rm -f ./src/generated/schema.graphql && bun ./cli/generateSchemaGraphql.ts --o ./src/generated/schema.graphql && graphql-codegen --config graphql-codegen.ts",
+    "codegen:prisma": "prisma generate"
+  },
+  "dependencies": {
+    "@apollo/server": "^4.9.3",
+    "@graphql-tools/load-files": "^7.0.0",
+    "@hapi/boom": "^10.0.1",
+    "@prisma/client": "^5.3.1",
+    "@types/compression": "^1.7.3",
+    "@types/cookie-parser": "^1.4.4",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "cuid": "^3.0.0",
+    "dayjs": "^1.11.9",
+    "decompress": "^4.2.1",
+    "express": "^4.18.2",
+    "graphql": "^16.8.0",
+    "graphql-iso-date": "^3.6.1",
+    "graphql-middleware": "^6.1.35",
+    "graphql-type-json": "^0.3.2",
+    "lodash": "^4.17.21",
+    "pino": "github:capaj/pino#master",
+    "pino-pretty": "^10.2.0",
+    "prisma": "^5.3.1",
+    "typescript": "^5.2.2",
+    "yargs": "^17.7.2",
+    "zod": "^3.22.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "5.0.0",
+    "@graphql-codegen/typescript": "4.0.1",
+    "@graphql-codegen/typescript-resolvers": "4.0.1",
+    "@types/cors": "^2.8.14",
+    "@types/decompress": "^4.2.4",
+    "@types/express": "^4.17.17",
+    "@types/graphql-iso-date": "^3.4.0",
+    "@types/lodash": "^4.14.198",
+    "@types/yargs": "^17.0.24",
+    "@typescript-eslint/eslint-plugin": "^6.7.0",
+    "@typescript-eslint/parser": "^6.7.0",
+    "bun-types": "latest",
+    "eslint": "^8.49.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-moment-utc": "^1.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-regex": "^1.10.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "eslint-plugin-unused-imports": "^3.0.0",
+    "prettier": "^3.0.3"
+  }
+}

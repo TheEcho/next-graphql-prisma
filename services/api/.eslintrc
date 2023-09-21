@@ -1,0 +1,292 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": [
+    "@typescript-eslint",
+    "prettier",
+    "moment-utc",
+    "unused-imports",
+    "simple-import-sort",
+    "regex"
+  ],
+  "rules": {
+    "@typescript-eslint/ban-types": 0,
+    "@typescript-eslint/camelcase": [
+      "off"
+    ],
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-var-requires": [
+      "warn"
+    ],
+    "@typescript-eslint/no-shadow": [
+      "warn"
+    ],
+    "@typescript-eslint/consistent-type-imports": [
+      "warn",
+      {
+        "prefer": "type-imports"
+      }
+    ],
+    "import/order": "off",
+    "moment-utc/no-moment-without-utc": "error",
+    "no-console": "warn",
+    "no-nested-ternary": "error",
+    "no-return-await": [
+      "warn"
+    ],
+    "no-shadow": [
+      "off"
+    ],
+    "no-tabs": "warn",
+    "simple-import-sort/exports": "error",
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          [
+            "^\\u0000"
+          ],
+          [
+            "^(?!@|generated|bin|tasks|rest-routes|middleware|service|utils|schema)\\w"
+          ],
+          [
+            "^@?\\w"
+          ],
+          [
+            "^(generated|bin|tasks|rest-routes|middleware)\\w"
+          ],
+          [
+            "^(service|utils|schema)\\w"
+          ],
+          [
+            "^"
+          ],
+          [
+            "^\\."
+          ]
+        ]
+      }
+    ],
+    "sort-imports": "off",
+    "unused-imports/no-unused-imports-ts": "warn",
+    "unused-imports/no-unused-vars-ts": [
+      "error",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "none",
+        "ignoreRestSiblings": true
+      }
+    ],
+    "camelcase": "off",
+    "curly": "warn",
+    "eqeqeq": [
+      "warn"
+    ],
+    "padding-line-between-statements": [
+      "warn",
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": "return"
+      }
+    ],
+    "regex/invalid": [
+      "warn",
+      [
+        {
+          "regex": "new PrismaClient",
+          "message": "Use an existing instance of the prisma client.",
+          "files": {
+            "ignore": "prisma/seed.ts|src/index.ts|src/imports/main.ts"
+          }
+        },
+        {
+          "regex": "querySql\\([^,]+,[^,]+\\)",
+          "message": "Pass a third argument containing query variables."
+        },
+        {
+          "regex": "prisma\\.\\$queryRaw",
+          "message": "Use querySql instead",
+          "files": {
+            "ignore": "prisma/seed.ts"
+          }
+        },
+        {
+          "regex": "process\\.env",
+          "message": "Use ValidatedEnv instead",
+          "files": {
+            "ignore": ".+.test.ts|prisma/.*|src/utils/env.ts"
+          }
+        },
+        {
+          "regex": "test-dev@bellman.immo",
+          "message": "Use TEST_EMAIL constant instead.",
+          "files": {
+            "ignore": "src/service/thirdParty/requests/sendEmail.ts"
+          }
+        },
+        {
+          "regex": "prisma\\.[a-zA-Z\\.]+\\.(findMany|findFirst)",
+          "message": "Use findUnique instead in order to leverage prisma's batching queries optimization (cf https://www.prisma.io/docs/guides/performance-and-optimization/query-optimization-performance).",
+          "files": {
+            "inspect": ".*resolver\\.ts"
+          }
+        },
+        {
+          "regex": "getEnvVar(OrThrow)?\\('.*FRONT.*'\\)",
+          "message": "Use company-based token with `getFrontCredentials()`"
+        },
+        {
+          "regex": "\\.format\\(",
+          "message": "Use `format` utils from utils/date.ts instead of moment(...).format(...) so that we can get rid of moment some day. ",
+          "files": {
+            "ignore": "src/utils/date.ts"
+          }
+        },
+        {
+          "regex": "Query\\: \\{",
+          "message": "Type Query object with a type computed from generated/graphql-resolvers-types to be graphql type safe (see services/api-graphql/src/schema/service_order/types.ts).",
+          "files": {
+            "inspect": ".*query\\.ts"
+          }
+        },
+        {
+          "regex": "Mutation: \\{",
+          "message": "Type Mutation object with a type computed from generated/graphql-resolvers-types to be graphql type safe (see services/api-graphql/src/schema/service_order/types.ts).",
+          "files": {
+            "inspect": ".*mutation\\.ts"
+          }
+        },
+        {
+          "regex": "prisma.accountingAccount.create",
+          "message": "Use findOrCreateAccount or findOrCreateAccountWithObjectId service instead of raw prisma access"
+        },
+        {
+          "regex": "disconnect: (?!true|false|arrayOrUndefined)",
+          "message": "Do not use disconnect directly on arrays. Use \"arrayOrUndefined\" instead"
+        },
+        {
+          "regex": "from 'service/communication/email/sendEmail'",
+          "message": "Use createCustomEmailCommunication instead and send it via sendCommunication."
+        }
+      ]
+    ],
+    "regex/invalid-error": [
+      "error",
+      [
+        {
+          "regex": "from '\\.prisma/client'",
+          "message": "import prisma from 'generated/prisma'",
+          "replacement": "from 'generated/prisma'"
+        },
+        {
+          "regex": "from '@prisma/client'",
+          "message": "import prisma from 'generated/prisma'",
+          "replacement": "from 'generated/prisma'",
+          "files": {
+            "ignore": ".eslintrc.js"
+          }
+        },
+        {
+          "regex": "prisma.bankMessage",
+          "message": "Use bankMessageService instead of raw prisma access",
+          "files": {
+            "ignore": "src/utils/libs/exabanque/message/bankMessageService.ts"
+          }
+        },
+        {
+          "regex": "prisma.bankMessageProcessing",
+          "message": "Use bankMessageService instead of raw prisma access",
+          "files": {
+            "ignore": "src/utils/libs/exabanque/message/bankMessageService.ts"
+          }
+        },
+        {
+          "regex": "prisma.companyPreference",
+          "message": "Use companyPreference service instead of raw prisma access",
+          "files": {
+            "ignore": "src/service/companyPreferences/companyPreferences.ts"
+          }
+        },
+        {
+          "regex": "prisma.accountingRecord.delete",
+          "message": "Use deleteRecord service instead of raw prisma access",
+          "files": {
+            "ignore": "src/service/accounting/record/deleteRecord/deleteRecord.ts|src/lease-management/src/repositories/accounting-record/PrismaAccountingRecord.repository.ts"
+          }
+        },
+        {
+          "regex": "prisma.accountingExercise.delete",
+          "message": "Use deleteExercise service instead of raw prisma access",
+          "files": {
+            "ignore": "src/service/accounting/exercise/deleteExercise/deleteExercise.ts"
+          }
+        },
+        {
+          "regex": "from '@hapi/joi'",
+          "message": "Use zod instead of joi (seed ADR 0005)"
+        },
+        {
+          "regex": "from 'yup'",
+          "message": "Use zod instead of yup (seed ADR 0005)"
+        },
+        {
+          "regex": "from 'bin/commands'",
+          "message": "We should not import from bin/commands, please write a dedicated service instead"
+        },
+        {
+          "regex": "companyGoogleDrive.findUnique",
+          "message": "Use the dedicated service getCompanyGoogleDrive instead",
+          "files": {
+            "ignore": ".+.test.ts|src/service/googleDrive/companyDrive/getCompanyGoogleDrive.ts"
+          }
+        }
+      ]
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "./bin/commands/**/*",
+        "src/bin/**/*",
+        "prisma/*",
+        "src/imports/main.ts"
+      ],
+      "rules": {
+        "no-console": "off"
+      }
+    },
+    {
+      "files": [
+        "*.js",
+        "*.jsx"
+      ],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off",
+        "@typescript-eslint/explicit-function-return-type": "off"
+      }
+    },
+    {
+      "files": [
+        "*.ts"
+      ],
+      "rules": {
+        "@typescript-eslint/no-explicit-any": "off"
+      }
+    }
+  ],
+  "ignorePatterns": [
+    "node_modules",
+    "src/generated",
+    ".eslintrc.ts"
+  ]
+}
