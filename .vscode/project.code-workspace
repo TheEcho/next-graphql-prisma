@@ -1,0 +1,22 @@
+{
+    "folders": [
+        {
+            "name": "Root",
+            "path": "../"
+        },
+        {
+            "name": "front",
+            "path": "../services/front"
+        },
+        {
+            "name": "api",
+            "path": "../services/api"
+        },
+    ],
+    "settings": {
+        "files.exclude": {
+            "node_modules/": true,
+            "services": true
+        },
+    }
+}

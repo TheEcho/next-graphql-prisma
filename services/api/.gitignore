@@ -1,3 +1,12 @@
 node_modules
-# Keep environment variables out of version control
-.env
+.tags*
+*.log
+coverage
+*.swp
+jsconfig.json
+dist
+.DS_Store
+/builds
+report.*
+**/.history/
+test-results/

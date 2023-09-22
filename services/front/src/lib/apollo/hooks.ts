@@ -50,10 +50,7 @@ export const useMutation = <TData, TVars>(
 
 export const useGeneratedMutation = <TData, TVars>(
   mutation: MutationTuple<TData, TVars>,
-  {
-    onSuccess,
-    onError,
-  }: CallbackOptions,
+  { onSuccess, onError }: CallbackOptions,
 ): MutationTuple<TData, TVars> => {
   const [, { data, loading, error }] = mutation
 
@@ -68,10 +65,10 @@ export const useGeneratedMutation = <TData, TVars>(
         onError()
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading])
 
   useLogError(error)
+
   return mutation
 }
 
@@ -80,6 +77,7 @@ export const useGeneratedQueryWithError = <TData, TVars extends OperationVariabl
 ): QueryResult<TData, TVars> => {
   const { error } = query
   useLogError(error)
+
   return query
 }
 
@@ -88,6 +86,7 @@ export const useGeneratedLazyQueryWithError = <TData, TVars extends OperationVar
 ): QueryTuple<TData, TVars> => {
   const [, { error }] = lazyQuery
   useLogError(error)
+
   return lazyQuery
 }
 

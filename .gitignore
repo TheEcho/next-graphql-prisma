@@ -12,7 +12,6 @@ junit.xml
 e2e/
 
 # Tooling
-.env
 generated/schema*.graphql
 
 # Generated files
@@ -21,6 +20,7 @@ generated/schema*.graphql
 
 # VSCode
 .vscode/*
+!.vscode/*.code-workspace
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json

@@ -1,11 +1,14 @@
 {
-  "name": "cbz-reader",
+  "name": "api",
   "module": "./src/index.ts",
   "type": "module",
   "scripts": {
     "dev": "bun --watch ./src/index.ts | pino-pretty",
+    "codegen": "bun codegen:prisma && bun codegen:graphql",
     "codegen:graphql": "rm -f ./src/generated/schema.graphql && bun ./cli/generateSchemaGraphql.ts --o ./src/generated/schema.graphql && graphql-codegen --config graphql-codegen.ts",
-    "codegen:prisma": "prisma generate"
+    "codegen:prisma": "prisma generate",
+    "prisma:migration:create": "prisma migrate dev --create-only",
+    "prisma:migration:run": "prisma migrate dev"
   },
   "dependencies": {
     "@apollo/server": "^4.9.3",

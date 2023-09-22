@@ -1,21 +1,17 @@
-"use client";
+'use client'
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 
-import { useGetBooksQuery, useCreateBookMutation } from '@/generated/api-graphql';
-import { useGeneratedQueryWithError, useGeneratedMutation } from '@/lib/apollo/hooks';
+import { useCreateBookMutation, useGetBooksQuery } from '@src/generated/api-graphql'
+import { useGeneratedMutation, useGeneratedQueryWithError } from '@src/lib/apollo/hooks'
 
 export const Books = () => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [isPublished, setIsPublished] = useState(false)
-  const { data } = useGeneratedQueryWithError(
-    useGetBooksQuery()
-  )
+  const { data } = useGeneratedQueryWithError(useGetBooksQuery())
 
-  const [createBook] = useGeneratedMutation(
-    useCreateBookMutation(), {}
-  )
+  const [createBook] = useGeneratedMutation(useCreateBookMutation(), {})
 
   const handleAddBook = () => {
     createBook({
@@ -24,23 +20,26 @@ export const Books = () => {
           title,
           content,
           published: isPublished,
-        }
+        },
       },
-      refetchQueries: ['getBooks']
+      refetchQueries: ['getBooks'],
     })
   }
 
   return (
     <>
-      { data?.books.map(book => (
-        <div key={book.title}>{book.title}</div>
-      )) }
+      {data?.books.map(book => <div key={book.title}>{book.title}</div>)}
       <div>
-        <input value={title} onChange={e => setTitle(e.target.value)} placeholder='Title' />
-        <input value={content} onChange={e => setContent(e.target.value)} placeholder='Content' />
-        <input type='checkbox' checked={isPublished} onChange={e => setIsPublished(e.target.checked)} placeholder='Name' />
+        <input value={title} onChange={e => setTitle(e.target.value)} placeholder="Title" />
+        <input value={content} onChange={e => setContent(e.target.value)} placeholder="Content" />
+        <input
+          type="checkbox"
+          checked={isPublished}
+          onChange={e => setIsPublished(e.target.checked)}
+          placeholder="Name"
+        />
         <button onClick={handleAddBook}>Add</button>
       </div>
     </>
-  );
+  )
 }

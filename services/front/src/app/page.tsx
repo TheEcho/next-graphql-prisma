@@ -1,12 +1,11 @@
-"use client";
+'use client'
 
-import { Books } from '@/components/books/Books';
-import React, { useState } from 'react'
+import { Books } from '@src/components/books/Books'
 
 export default function Page() {
   return (
     <main>
       <Books />
     </main>
-  );
+  )
 }
