@@ -1,3 +1,4 @@
 src/generated/
 .eslintrc.js
 package.json
+next.config.js

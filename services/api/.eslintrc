@@ -12,7 +12,6 @@
   "plugins": [
     "@typescript-eslint",
     "prettier",
-    "moment-utc",
     "unused-imports",
     "simple-import-sort",
     "regex"
@@ -36,7 +35,6 @@
       }
     ],
     "import/order": "off",
-    "moment-utc/no-moment-without-utc": "error",
     "no-console": "warn",
     "no-nested-ternary": "error",
     "no-return-await": [
@@ -110,17 +108,6 @@
           }
         },
         {
-          "regex": "querySql\\([^,]+,[^,]+\\)",
-          "message": "Pass a third argument containing query variables."
-        },
-        {
-          "regex": "prisma\\.\\$queryRaw",
-          "message": "Use querySql instead",
-          "files": {
-            "ignore": "prisma/seed.ts"
-          }
-        },
-        {
           "regex": "process\\.env",
           "message": "Use ValidatedEnv instead",
           "files": {
@@ -128,28 +115,10 @@
           }
         },
         {
-          "regex": "test-dev@bellman.immo",
-          "message": "Use TEST_EMAIL constant instead.",
-          "files": {
-            "ignore": "src/service/thirdParty/requests/sendEmail.ts"
-          }
-        },
-        {
           "regex": "prisma\\.[a-zA-Z\\.]+\\.(findMany|findFirst)",
           "message": "Use findUnique instead in order to leverage prisma's batching queries optimization (cf https://www.prisma.io/docs/guides/performance-and-optimization/query-optimization-performance).",
           "files": {
             "inspect": ".*resolver\\.ts"
-          }
-        },
-        {
-          "regex": "getEnvVar(OrThrow)?\\('.*FRONT.*'\\)",
-          "message": "Use company-based token with `getFrontCredentials()`"
-        },
-        {
-          "regex": "\\.format\\(",
-          "message": "Use `format` utils from utils/date.ts instead of moment(...).format(...) so that we can get rid of moment some day. ",
-          "files": {
-            "ignore": "src/utils/date.ts"
           }
         },
         {
@@ -165,18 +134,6 @@
           "files": {
             "inspect": ".*mutation\\.ts"
           }
-        },
-        {
-          "regex": "prisma.accountingAccount.create",
-          "message": "Use findOrCreateAccount or findOrCreateAccountWithObjectId service instead of raw prisma access"
-        },
-        {
-          "regex": "disconnect: (?!true|false|arrayOrUndefined)",
-          "message": "Do not use disconnect directly on arrays. Use \"arrayOrUndefined\" instead"
-        },
-        {
-          "regex": "from 'service/communication/email/sendEmail'",
-          "message": "Use createCustomEmailCommunication instead and send it via sendCommunication."
         }
       ]
     ],
@@ -197,58 +154,8 @@
           }
         },
         {
-          "regex": "prisma.bankMessage",
-          "message": "Use bankMessageService instead of raw prisma access",
-          "files": {
-            "ignore": "src/utils/libs/exabanque/message/bankMessageService.ts"
-          }
-        },
-        {
-          "regex": "prisma.bankMessageProcessing",
-          "message": "Use bankMessageService instead of raw prisma access",
-          "files": {
-            "ignore": "src/utils/libs/exabanque/message/bankMessageService.ts"
-          }
-        },
-        {
-          "regex": "prisma.companyPreference",
-          "message": "Use companyPreference service instead of raw prisma access",
-          "files": {
-            "ignore": "src/service/companyPreferences/companyPreferences.ts"
-          }
-        },
-        {
-          "regex": "prisma.accountingRecord.delete",
-          "message": "Use deleteRecord service instead of raw prisma access",
-          "files": {
-            "ignore": "src/service/accounting/record/deleteRecord/deleteRecord.ts|src/lease-management/src/repositories/accounting-record/PrismaAccountingRecord.repository.ts"
-          }
-        },
-        {
-          "regex": "prisma.accountingExercise.delete",
-          "message": "Use deleteExercise service instead of raw prisma access",
-          "files": {
-            "ignore": "src/service/accounting/exercise/deleteExercise/deleteExercise.ts"
-          }
-        },
-        {
-          "regex": "from '@hapi/joi'",
-          "message": "Use zod instead of joi (seed ADR 0005)"
-        },
-        {
-          "regex": "from 'yup'",
-          "message": "Use zod instead of yup (seed ADR 0005)"
-        },
-        {
           "regex": "from 'bin/commands'",
           "message": "We should not import from bin/commands, please write a dedicated service instead"
-        },
-        {
-          "regex": "companyGoogleDrive.findUnique",
-          "message": "Use the dedicated service getCompanyGoogleDrive instead",
-          "files": {
-            "ignore": ".+.test.ts|src/service/googleDrive/companyDrive/getCompanyGoogleDrive.ts"
-          }
         }
       ]
     ]
@@ -256,10 +163,8 @@
   "overrides": [
     {
       "files": [
-        "./bin/commands/**/*",
         "src/bin/**/*",
-        "prisma/*",
-        "src/imports/main.ts"
+        "prisma/*"
       ],
       "rules": {
         "no-console": "off"
@@ -287,6 +192,6 @@
   "ignorePatterns": [
     "node_modules",
     "src/generated",
-    ".eslintrc.ts"
+    "dist"
   ]
 }

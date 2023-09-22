@@ -13,8 +13,8 @@ export const Books = () => {
 
   const [createBook] = useGeneratedMutation(useCreateBookMutation(), {})
 
-  const handleAddBook = () => {
-    createBook({
+  const handleAddBook = async () => {
+    await createBook({
       variables: {
         input: {
           title,
@@ -38,7 +38,7 @@ export const Books = () => {
           onChange={e => setIsPublished(e.target.checked)}
           placeholder="Name"
         />
-        <button onClick={handleAddBook}>Add</button>
+        <button onClick={() => handleAddBook}>Add</button>
       </div>
     </>
   )

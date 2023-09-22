@@ -126,5 +126,5 @@ module.exports = {
       ],
     ],
     'jsx-expressions/strict-logical-expressions': 'error',
-  }
+  },
 }
