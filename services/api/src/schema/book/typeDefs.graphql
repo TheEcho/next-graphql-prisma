@@ -7,9 +7,13 @@ type Book {
   updatedAt: DateTime!
 }
 
-type Query {
+type Author {
   books: [Book!]!
-  book: Book!
+}
+
+type Query {
+  books: BookListOutput!
+  book(id: ID!): BookOutput!
 }
 
 type Mutation {
@@ -20,8 +24,14 @@ input CreateBookInput {
   title: String!
   content: String!
   published: Boolean
+  authorId: ID!
 }
 
 type BookOutput {
   book: Book!
+}
+
+type BookListOutput {
+  books: [Book!]!
+  total: Int!
 }

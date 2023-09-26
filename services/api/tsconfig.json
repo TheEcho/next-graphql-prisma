@@ -1,24 +1,47 @@
 {
+  "references": [],
   "compilerOptions": {
-    "lib": ["ESNext"],
-    "module": "esnext",
-    "target": "esnext",
-    "moduleResolution": "bundler",
-    "moduleDetection": "force",
-    "allowImportingTsExtensions": true,
-    "noEmit": true,
-    "composite": true,
-    "strict": true,
-    "downlevelIteration": true,
-    "skipLibCheck": true,
-    "jsx": "preserve",
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "allowJs": true,
-    "baseUrl": "./src",
-    "types": [
-      "bun-types" // add Bun global
+    "composite": false,
+    "target": "es2019",
+    "lib": [
+      "dom",
+      "ES2020"
     ],
-    "esModuleInterop": true
+    "module": "commonjs",
+    "noErrorTruncation": true,
+    "allowJs": true,
+    "outDir": "./dist",
+    "strict": true,
+    "noImplicitAny": false,
+    "baseUrl": "./src",
+    "rootDir": "./src",
+    "sourceMap": true,
+    "noUncheckedIndexedAccess": false,
+    "esModuleInterop": true,
+    "downlevelIteration": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "incremental": true,
+    "checkJs": false,
+    "resolveJsonModule": true,
+    "tsBuildInfoFile": "./dist/tsconfig.tsbuildinfo",
+    "typeRoots": [
+      "./src/types/",
+      "node_modules/@types/",
+      "../../node_modules/@types/"
+    ],
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "src/generated",
+    "_test.ts",
+    "src/types"
+  ],
+  "ts-node": {
+    "require": [
+      "tsconfig-paths/register"
+    ]
   }
 }

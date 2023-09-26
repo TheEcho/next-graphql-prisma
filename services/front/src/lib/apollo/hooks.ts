@@ -20,6 +20,7 @@ export type CallbackOptions = {
 }
 
 const logErrorMessage = (error?: string): void => {
+  // eslint-disable-next-line no-console
   console.error(error)
 }
 const logError = (error?: ApolloError): void => {

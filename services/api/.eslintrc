@@ -123,14 +123,14 @@
         },
         {
           "regex": "Query\\: \\{",
-          "message": "Type Query object with a type computed from generated/graphql-resolvers-types to be graphql type safe (see services/api-graphql/src/schema/service_order/types.ts).",
+          "message": "Type Query object with a type computed from generated/graphql-resolvers-types to be graphql type safe.",
           "files": {
             "inspect": ".*query\\.ts"
           }
         },
         {
           "regex": "Mutation: \\{",
-          "message": "Type Mutation object with a type computed from generated/graphql-resolvers-types to be graphql type safe (see services/api-graphql/src/schema/service_order/types.ts).",
+          "message": "Type Mutation object with a type computed from generated/graphql-resolvers-types to be graphql type safe.",
           "files": {
             "inspect": ".*mutation\\.ts"
           }

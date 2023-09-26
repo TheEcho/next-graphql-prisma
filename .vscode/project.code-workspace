@@ -15,8 +15,7 @@
     ],
     "settings": {
         "files.exclude": {
-            "node_modules/": true,
-            "services": true
+            "services/": true
         },
     }
 }

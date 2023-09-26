@@ -1,6 +1,13 @@
-# Bun
+# Yarn
 node_modules/
-bun.lockb
+.yarn/*
+.yarn/cache/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+
+package-lock.json
 
 # Security Key
 *.pem

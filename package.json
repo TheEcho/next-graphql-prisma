@@ -1,10 +1,19 @@
 {
-    "private": true,
-    "name": "started",
-    "workspaces": {
-      "packages": ["./services/*"]
-    },
-    "npmClient": "bun@1.0.2",
-    "packageManager": "bun@1.0.2"
-  }
-  
+  "name": "next-graphql-prisma",
+  "workspaces": {
+    "packages": [
+      "./services/*"
+    ]
+  },
+  "cacheDirectories": [
+    ".yarn/cache",
+    "services/front/.next/cache"
+  ],
+  "scripts": {
+    "build": "yarn workspace ${WORKSPACE_NAME:-foreach} run build",
+    "start": "yarn workspace ${WORKSPACE_NAME:-foreach} run start",
+    "root": "yarn workspace ${WORKSPACE_NAME:-foreach} run"
+  },
+  "npmClient": "yarn",
+  "packageManager": "yarn@3.6.3"
+}

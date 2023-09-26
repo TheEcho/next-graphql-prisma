@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "NEXT_TELEMETRY_DISABLED=1 next dev",
     "build": "NODE_OPTIONS=--max-old-space-size=4096 next build",
     "codegen:graphql": "graphql-codegen --config graphql-codegen.ts",
-    "start": "next start",
+    "start": "NODE_ENV=production node src/server.js",
+    "start:dev": "NODE_ENV=development node src/server.js",
     "lint": "next lint"
   },
   "dependencies": {

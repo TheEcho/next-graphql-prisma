@@ -1,11 +1,22 @@
-import type { Book, Prisma } from 'generated/prisma'
+import type { CreateBookInput } from 'generated/graphql-resolvers-types'
+import type { Book } from 'generated/prisma'
 import type { GraphqlContext } from 'schema/types'
 
 export const createBooks = async (
   { prisma }: GraphqlContext,
-  input: Prisma.BookCreateInput,
+  { authorId, ...input }: CreateBookInput,
 ): Promise<Book> => {
-  return prisma.book.create({
-    data: input,
+  const book = await prisma.book.create({
+    data: {
+      ...input,
+      author: {
+        connect: { id: authorId },
+      },
+    },
+    include: {
+      author: true,
+    },
   })
+
+  return book
 }
