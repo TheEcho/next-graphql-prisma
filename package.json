@@ -10,9 +10,9 @@
     "services/front/.next/cache"
   ],
   "scripts": {
-    "build": "yarn workspace ${WORKSPACE_NAME:-foreach} run build",
-    "start": "yarn workspace ${WORKSPACE_NAME:-foreach} run start",
-    "root": "yarn workspace ${WORKSPACE_NAME:-foreach} run"
+    "build": "yarn workspaces foreach -pi run build",
+    "start": "yarn workspaces foreach -pi run start",
+    "dev": "yarn workspaces foreach -pi run dev"
   },
   "npmClient": "yarn",
   "packageManager": "yarn@3.6.3"
