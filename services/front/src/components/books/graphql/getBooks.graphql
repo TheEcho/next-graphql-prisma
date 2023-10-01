@@ -1,10 +1,13 @@
 query getBooks {
   books {
-    id
-    title
-    content
-    published
-    createdAt
-    updatedAt
+    books {
+      id
+      title
+      content
+      published
+      createdAt
+      updatedAt
+    }
+    total
   }
 }

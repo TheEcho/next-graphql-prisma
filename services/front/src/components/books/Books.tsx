@@ -20,6 +20,7 @@ export const Books = () => {
           title,
           content,
           published: isPublished,
+          authorId: '',
         },
       },
       refetchQueries: ['getBooks'],
@@ -28,7 +29,7 @@ export const Books = () => {
 
   return (
     <>
-      {data?.books.map(book => <div key={book.title}>{book.title}</div>)}
+      {data?.books.books.map(book => <div key={book.title}>{book.title}</div>)}
       <div>
         <input value={title} onChange={e => setTitle(e.target.value)} placeholder="Title" />
         <input value={content} onChange={e => setContent(e.target.value)} placeholder="Content" />
